@@ -13,12 +13,13 @@ This document guides apprentices through Module 1 completion for TFX Hub. It des
 
 ## Prerequisites for Apprentices
 
-1. Install .NET SDK 8.0 (https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+1. Install .NET SDK **8.0.419** (https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 2. Confirm installation:
-   - `dotnet --version` (expect `8.0.x`)
-3. In repo root, run:
+   - `dotnet --version` (expect `8.0.419`)
+3. `global.json` in repo root locks the SDK — do not change it.
+4. In repo root, run:
    - `dotnet restore TFXHub.sln`
-   - `dotnet build TFXHub.sln --configuration Release`
+   - `dotnet build TFXHub.sln`
 
 ## Checklist
 
@@ -54,6 +55,48 @@ This document guides apprentices through Module 1 completion for TFX Hub. It des
 
 ---
 
+
+---
+
+## SDK and Package Versions (Pinned — March 26, 2026)
+
+**SDK:** `8.0.419` (global.json — rollForward: latestMinor)
+
+| Project | Package | Pinned Version |
+|---------|---------|----------------|
+| Host | Microsoft.EntityFrameworkCore | 8.0.25 |
+| Host | Microsoft.EntityFrameworkCore.Sqlite | 8.0.25 |
+| Host | Swashbuckle.AspNetCore | 6.9.0 |
+| Host | OpenTelemetry | 1.15.0 |
+| Host | Serilog.AspNetCore | 8.0.3 |
+| Agent | Microsoft.Extensions.Hosting | 8.0.1 |
+| Agent | OpenTelemetry | 1.15.0 |
+| Agent | Serilog.AspNetCore | 8.0.3 |
+| Client | System.Net.Http.Json | 8.0.1 |
+| Client | OpenTelemetry | 1.15.0 |
+| Client | Serilog.Sinks.Console | 5.0.1 |
+
+---
+
+## How to Recover (Top 5 Commands)
+
+```bash
+# 1. Clean rebuild
+dotnet restore; dotnet build
+
+# 2. Reset SQLite and reseed
+Remove-Item src/TFXHub.Host/tfxhub.db -ErrorAction SilentlyContinue
+dotnet run --project src/TFXHub.Host
+
+# 3. Check NuGet drift (within net8 band)
+dotnet list package --outdated --highest-minor
+
+# 4. Full Docker rebuild
+cd infra/docker; docker compose down; docker compose up --build -d
+
+# 5. Confirm health
+Invoke-RestMethod http://localhost:8080/api/health
+```
 ## Validation Steps
 
 ### Local (non-container)
@@ -138,20 +181,22 @@ Module 1 is now fully implemented. All components are wired end-to-end and nativ
 - Error handling prints status codes and server messages for failed requests.
 
 ### Docker Compose validation
-- `docker-compose up --build -d` attempted, but Docker daemon unavailable in environment (`dockerDesktopLinuxEngine` not found).
-- docker-compose file is configured for:
-  - host: 8080 -> 5000
-  - agent: depends_on host, `HOST_BASE_URL=http://host:5000`
-  - client: depends_on host, `HOST_BASE_URL=http://host:5000`
+- `docker compose up --build -d` — **CONFIRMED WORKING** (March 26, 2026)
+- 12 containers running: host1, host2, agent1-4, client, loadbalancer, prometheus, grafana, logstash, winston-logger
+- Load balancer: `http://localhost:8080/api/health` ? `{"status":"Healthy"}`
+- Agent1 logs confirm 5s polling and exponential retry on host unavailable
+- Grafana on port 3001 (remapped to avoid host conflict)
 
 ### Git validation
-- Not a Git repo in this environment; tag push check unavailable.
+- Repository initialized and committed (`git init` ? initial commit)
+- Tag `v0.2` created locally: `git tag v0.2 -m "Module 1 baseline"`
+- No remote configured yet — push pending a remote origin URL
 
 ### Next Steps
-1. Start Docker daemon and run `docker-compose up --build -d`.
-2. Validate Host at http://localhost:8080/api/health.
-3. Inspect agent logs for polling/retry behavior.
-4. Run Client container for CRUD scenario.
-5. Create and push `v0.2` tag in repository.
+1. Set remote origin: `git remote add origin <repo-url>; git push -u origin master --tags`
+2. Add xUnit test project: `dotnet new xunit -n TFXHub.Tests; dotnet sln add ...`
+3. Add Prometheus `/metrics` endpoint (`prometheus-net.AspNetCore` NuGet).
+4. Replace per-instance SQLite with shared PostgreSQL for multi-host deployments.
+5. Add EF Core migrations: `dotnet ef migrations add InitialCreate`
 
-**Module 1 Status: COMPLETED (manual checks passed, Docker daemon unavailable)**
+**Module 1 Status: COMPLETED AND CONTAINERIZED (March 26, 2026)**
