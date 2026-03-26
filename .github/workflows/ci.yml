@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore
+
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+
+    - name: Format
+      run: dotnet format --verify-no-changes
+
+    - name: Build Docker images
+      run: |
+        docker build -f src/TFXHub.Host/Dockerfile -t tfxhub-host .
+        docker build -f src/TFXHub.Agent/Dockerfile -t tfxhub-agent .
+        docker build -f src/TFXHub.Client/Dockerfile -t tfxhub-client .

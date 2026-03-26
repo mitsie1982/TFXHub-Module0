@@ -1,0 +1,59 @@
+{
+  "dashboard": {
+    "title": "TFXHub Health Dashboard",
+    "description": "Monitor TFXHub infrastructure health",
+    "timezone": "browser",
+    "panels": [
+      {
+        "title": "Request Rate",
+        "targets": [
+          {
+            "expr": "rate(http_requests_total[5m])",
+            "legendFormat": "{{method}} {{path}}"
+          }
+        ],
+        "type": "graph"
+      },
+      {
+        "title": "Error Rate",
+        "targets": [
+          {
+            "expr": "rate(http_requests_total{status=~\"5..\"}[5m])",
+            "legendFormat": "{{status}}"
+          }
+        ],
+        "type": "graph"
+      },
+      {
+        "title": "Host Health",
+        "targets": [
+          {
+            "expr": "up{job=\"tfxhub-host\"}",
+            "legendFormat": "{{instance}}"
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "title": "Agent Health",
+        "targets": [
+          {
+            "expr": "up{job=\"tfxhub-agent\"}",
+            "legendFormat": "{{instance}}"
+          }
+        ],
+        "type": "stat"
+      }
+    ],
+    "schemaVersion": 27,
+    "style": "dark",
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {}
+  }
+}

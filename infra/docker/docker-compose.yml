@@ -1,0 +1,100 @@
+services:
+  host1:
+    build:
+      context: ../..
+      dockerfile: src/TFXHub.Host/Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:5000
+
+  host2:
+    build:
+      context: ../..
+      dockerfile: src/TFXHub.Host/Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:5000
+
+  loadbalancer:
+    image: nginx:stable-alpine
+    depends_on:
+      - host1
+      - host2
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+  agent1:
+    build:
+      context: ../..
+      dockerfile: src/TFXHub.Agent/Dockerfile
+    depends_on:
+      - host1
+    environment:
+      - HOST_BASE_URL=http://host1:5000
+
+  agent2:
+    build:
+      context: ../..
+      dockerfile: src/TFXHub.Agent/Dockerfile
+    depends_on:
+      - host1
+    environment:
+      - HOST_BASE_URL=http://host1:5000
+
+  agent3:
+    build:
+      context: ../..
+      dockerfile: src/TFXHub.Agent/Dockerfile
+    depends_on:
+      - host2
+    environment:
+      - HOST_BASE_URL=http://host2:5000
+
+  agent4:
+    build:
+      context: ../..
+      dockerfile: src/TFXHub.Agent/Dockerfile
+    depends_on:
+      - host2
+    environment:
+      - HOST_BASE_URL=http://host2:5000
+
+  client:
+    build:
+      context: ../..
+      dockerfile: src/TFXHub.Client/Dockerfile
+    depends_on:
+      - loadbalancer
+    environment:
+      - HOST_BASE_URL=http://loadbalancer:80
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.11.1
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+
+  winston-logger:
+    build:
+      context: ./winston-logger
+      dockerfile: Dockerfile
+    depends_on:
+      - logstash
+    environment:
+      - LOGSTASH_HOST=logstash
+      - LOGSTASH_PORT=5000
