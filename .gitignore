@@ -29,3 +29,9 @@ logs/
 
 # Secrets
 appsettings.Development.json
+dotnet-sdk.exe
+*.exe
+*.msi
+bin/
+obj/
+
