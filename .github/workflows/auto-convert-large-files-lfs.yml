@@ -1,0 +1,191 @@
+name: Auto Convert Large Files to Git LFS
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  # Comma-separated glob patterns to convert to LFS (edit to suit your repo)
+  LFS_PATTERNS: "*.zip,*.exe,*.dll,*.nupkg,*.msi,*.tar.gz,*.tgz,*.iso,*.png,*.jpg,*.jpeg,*.mp4,*.mov"
+  # Threshold in bytes to consider a file "large" (default 5 MB)
+  LARGE_OBJECT_THRESHOLD_BYTES: "5242880"
+  # Set to "true" to let the Action rewrite history and force-push the PR branch automatically.
+  # WARNING: enabling this will rewrite commits on the PR branch and require collaborators to rebase/force-pull.
+  AUTO_CONVERT: "false"
+
+jobs:
+  detect-and-handle-large-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Install git-lfs
+        run: |
+          curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+          sudo apt-get update -y
+          sudo apt-get install -y git-lfs
+          git lfs install --local
+
+      - name: Determine PR branch and base
+        id: refs
+        run: |
+          echo "head_ref=${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
+          echo "base_sha=$(jq -r .pull_request.base.sha < $GITHUB_EVENT_PATH)" >> $GITHUB_OUTPUT
+          echo "head_sha=$(jq -r .pull_request.head.sha < $GITHUB_EVENT_PATH)" >> $GITHUB_OUTPUT
+
+      - name: List changed files and detect large matches
+        id: detect
+        run: |
+          set -euo pipefail
+          THRESHOLD=${{ env.LARGE_OBJECT_THRESHOLD_BYTES }}
+          PATTERNS="${{ env.LFS_PATTERNS }}"
+          HEAD="${{ steps.refs.outputs.head_ref }}"
+          echo "Checking files changed in PR branch $HEAD"
+          # Get list of changed files in PR
+          git fetch --no-tags --prune --depth=0 origin +refs/heads/*:refs/remotes/origin/*
+          CHANGED=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}...origin/$HEAD || true)
+          echo "changed_files<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          # Build list of offending files (matching patterns and exceeding threshold)
+          OFFENDERS_FILE=$(mktemp)
+          IFS=',' read -ra GLOBS <<< "$PATTERNS"
+          for f in $CHANGED; do
+            if [ -f "$f" ]; then
+              size=$(wc -c < "$f" | tr -d ' ')
+              if [ "$size" -ge "$THRESHOLD" ]; then
+                for g in "${GLOBS[@]}"; do
+                  if [[ "$f" == $g ]]; then
+                    echo "$size $f" >> "$OFFENDERS_FILE"
+                  fi
+                done
+              fi
+            fi
+          done
+
+          if [ -s "$OFFENDERS_FILE" ]; then
+            echo "offenders=$(cat $OFFENDERS_FILE | tr '\n' ';')" >> $GITHUB_OUTPUT
+          else
+            echo "offenders=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create or update .gitattributes with LFS patterns
+        id: gitattributes
+        run: |
+          set -euo pipefail
+          GLOBS="${{ env.LFS_PATTERNS }}"
+          ATTR_FILE=".gitattributes"
+          echo "Updating $ATTR_FILE with LFS patterns"
+          touch $ATTR_FILE
+          # Add each pattern if not present
+          IFS=',' read -ra PATTERN_ARR <<< "$GLOBS"
+          for p in "${PATTERN_ARR[@]}"; do
+            # normalize whitespace
+            pat=$(echo "$p" | xargs)
+            entry="$pat filter=lfs diff=lfs merge=lfs -text"
+            if ! grep -Fxq "$entry" "$ATTR_FILE"; then
+              echo "$entry" >> "$ATTR_FILE"
+            fi
+          done
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add $ATTR_FILE
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: add/update .gitattributes for Git LFS patterns" || true
+            git push origin HEAD:refs/heads/${{ github.event.pull_request.head.ref }} || true
+            echo "gitattributes_committed=true" >> $GITHUB_OUTPUT
+          else
+            echo "gitattributes_committed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment and optionally auto-convert to LFS
+        id: action
+        uses: actions/github-script@v7
+        env:
+          OFFENDERS: ${{ steps.detect.outputs.offenders }}
+          AUTO_CONVERT: ${{ env.AUTO_CONVERT }}
+          LFS_PATTERNS: ${{ env.LFS_PATTERNS }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const offendersRaw = process.env.OFFENDERS || "";
+            const autoConvert = process.env.AUTO_CONVERT === "true";
+            const headRef = context.payload.pull_request.head.ref;
+            const prNumber = context.payload.pull_request.number;
+            const patterns = process.env.LFS_PATTERNS;
+            if (!offendersRaw) {
+              core.info("No offending files detected. Nothing to do.");
+              return;
+            }
+            const offenders = offendersRaw.split(';').filter(Boolean).map(s => {
+              const parts = s.trim().split(' ');
+              return { size: Number(parts[0]), path: parts.slice(1).join(' ') };
+            });
+            let body = `:warning: **Large file(s) detected** in this PR that match configured LFS patterns (${patterns}).\n\n`;
+            body += "Files detected:\n\n";
+            for (const o of offenders) {
+              const mb = (o.size / 1024 / 1024).toFixed(2);
+              body += `- ${mb} MB — \`${o.path}\`\n`;
+            }
+            body += "\n**Action**: this repository tracks these patterns with Git LFS. ";
+            if (!autoConvert) {
+              body += "Please convert these files to Git LFS locally and update the PR, or enable automatic conversion by a repository admin.\n\n";
+              body += "Suggested local commands:\n\n";
+              body += "```\n# install git-lfs\ngit lfs install\n# ensure .gitattributes exists (added by this workflow)\n# remove from index and re-add so LFS pointer is created\ngit rm --cached <path>\ngit add <path>\ngit commit -m \"chore: move <path> to Git LFS\"\ngit push\n```\n";
+            } else {
+              body += "Repository is configured to attempt automatic conversion. The workflow will rewrite the PR branch history and force-push the converted branch. Collaborators will need to rebase or re-clone.\n";
+            }
+            await github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body
+            });
+            return { autoConvert: autoConvert, headRef };
+
+      - name: Auto convert and force-push branch (dangerous)
+        if: ${{ env.AUTO_CONVERT == 'true' && steps.detect.outputs.offenders != '' }}
+        run: |
+          set -euo pipefail
+          echo "AUTO_CONVERT enabled — performing git lfs migrate import and force-push"
+          # Ensure git-lfs is installed (earlier step)
+          git lfs install --local
+          # Build include list from env patterns
+          INCLUDE="${{ env.LFS_PATTERNS }}"
+          # Run migrate import to rewrite history for the current branch only
+          # This rewrites commits on the branch and will require force push
+          git fetch --no-tags --prune --depth=0 origin
+          BRANCH="${{ github.event.pull_request.head.ref }}"
+          # Run migrate import for the branch
+          git checkout "$BRANCH"
+          # Ensure .gitattributes is present and tracked
+          git add .gitattributes
+          git commit -m "chore: ensure .gitattributes for Git LFS" || true
+          # Perform migration (this rewrites history)
+          git lfs migrate import --include="$INCLUDE" --include-ref=refs/heads/"$BRANCH"
+          # Force push rewritten branch back to PR head
+          git push --force-with-lease origin "$BRANCH":"refs/heads/$BRANCH"
+
+      - name: Final status
+        run: |
+          if [ -z "${{ steps.detect.outputs.offenders }}" ]; then
+            echo "No large files matching patterns were detected."
+          else
+            if [ "${{ env.AUTO_CONVERT }}" = "true" ]; then
+              echo "Auto-convert attempted. Check PR for updated commits and notify contributors to rebase."
+            else
+              echo "Offending files detected and .gitattributes updated. A comment was posted on the PR with next steps."
+            fi
+          fi
