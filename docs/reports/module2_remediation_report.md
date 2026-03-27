@@ -790,3 +790,23 @@ o r i g i n 	 h t t p s : / / g i t h u b . c o m / H a n s - T F X / T F X H u 
  
  
 ```
+
+---
+
+## Final Push Result — 2026-03-27 08:53:16
+
+**Status:** SUCCESS
+
+**Actions completed:**
+1. Removed efs/original entries from .git/packed-refs (refs/original folder had been deleted earlier but entries persisted in packed-refs flat file)
+2. Rewrote packed-refs without BOM using System.Text.UTF8Encoding(False) with LF line endings
+3. Ran git reflog expire --expire=now --all + git gc --prune=now
+4. .git size dropped from 212 MB to 0.1 MB
+5. Pushed master branch: * [new branch] master -> master
+6. Pushed tag 0.2: * [new tag] v0.2 -> v0.2
+
+**Remote:** https://github.com/mitsie1982/TFXHub-Module0.git
+**Branch:** master (5 commits)
+**Tag:** v0.2 → ba02c4da228977fda3d4cd258b3fd6e9d046c53d
+
+**Root cause of delay:** dotnet-sdk.exe (222 MB) was committed in the first commit. ilter-branch rewrote history but old objects persisted in packed-refs via efs/original entries, blocking gc --prune. Fixed by rewriting the file with correct encoding.
