@@ -12,7 +12,8 @@
       'admin': 'tfx-banner-admin',
       'sysadmin': 'tfx-banner-admin',
       'developer': 'tfx-banner-dev',
-      'owner': 'tfx-banner-owner'
+      'owner': 'tfx-banner-owner',
+      'demo': 'tfx-banner-demo'
     };
     const bannerId = roleMap[role];
     if (bannerId) {

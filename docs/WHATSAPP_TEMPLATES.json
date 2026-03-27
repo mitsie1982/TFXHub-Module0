@@ -23,5 +23,10 @@
     ""template_name"": ""tfx_exec_summary"",
     ""language"": ""en_US"",
     ""body"": ""TFX Hub Executive Summary\nOwners, incident resolved. Repo shrank from 212MB to 0.1MB. Full report: {report_link}. Approve release? Reply YES to confirm.""
+  },
+  ""demo_user"": {
+    ""template_name"": ""tfx_demo_user"",
+    ""language"": ""en_US"",
+    ""body"": ""TFX Hub Demo: Hi {name}, try our interactive demo at {demo_link}. Share feedback to help us improve.""
   }
 }

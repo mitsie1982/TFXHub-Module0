@@ -56,6 +56,13 @@ Use these tokens in templates and messages:
 - Provide an opt-out mechanism (e.g., reply STOP).
 - Keep templates localized and include required placeholders.
 
+### Demo User
+**Purpose**: Let prospective users explore TFX Hub features in a sandbox environment without affecting production data.
+**Tone**: Friendly; exploratory.
+**CTA**: Try demo / Give feedback.
+**Banner**: **Try the TFX Hub demo** — Explore interactive features in a sandbox. [Start demo](/demo)
+**WhatsApp**: `TFX Hub Demo: Hi {name}, try our interactive demo at {demo_link}. Share feedback to help us improve.`
+
 ## Minimal Governance
 - Keep a changelog for communications templates in docs/COMMUNICATIONS_CHANGELOG.md.
 - Only authorized users may update WhatsApp templates and .gitattributes.
