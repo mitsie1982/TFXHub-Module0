@@ -1,0 +1,50 @@
+﻿<!-- Modal templates for audiences -->
+<!-- Contractor modal -->
+<template id='tfx-modal-contractor'>
+  <div class='tfx-modal'>
+    <h2>Action Required: Compliance Documents</h2>
+    <p>To maintain access, please upload required compliance documents and confirm your contract terms. Deadline: <strong>7 days</strong>.</p>
+    <button data-action='uploadDocs'>Upload Documents</button>
+    <button data-action='contactLegal'>Contact Legal</button>
+  </div>
+</template>
+
+<!-- Customer modal -->
+<template id='tfx-modal-customer'>
+  <div class='tfx-modal'>
+    <h2>Service Update</h2>
+    <p>We completed maintenance and validated your account. If you notice any issues, contact support.</p>
+    <button data-action='openAccount'>Open Account</button>
+    <button data-action='contactSupport'>Contact Support</button>
+  </div>
+</template>
+
+<!-- Admin modal -->
+<template id='tfx-modal-admin'>
+  <div class='tfx-modal'>
+    <h2>Operational Action Required</h2>
+    <p>Root cause removed; run the verification script and confirm no large objects remain. See diagnostics log.</p>
+    <button data-action='runVerification'>Run Verification</button>
+    <button data-action='viewLogs'>View Logs</button>
+  </div>
+</template>
+
+<!-- Developer modal -->
+<template id='tfx-modal-dev'>
+  <div class='tfx-modal'>
+    <h2>Developer Action</h2>
+    <p>Rebase on master, run the build verification script, and confirm tests pass locally before pushing changes.</p>
+    <pre>git fetch origin && git checkout master && git pull && git checkout -b fix/verify && ./scripts/verify.ps1</pre>
+    <button data-action='openRepo'>Open Repo</button>
+  </div>
+</template>
+
+<!-- Owner modal -->
+<template id='tfx-modal-owner'>
+  <div class='tfx-modal'>
+    <h2>Executive Summary</h2>
+    <p>Issue: large dotnet-sdk blob retained via refs/original in packed-refs. Action: packed-refs rewritten, GC run, repo shrank from 212 MB to 0.1 MB. Push completed.</p>
+    <button data-action='viewReport'>View Full Report</button>
+    <button data-action='approveRelease'>Approve Release</button>
+  </div>
+</template>
