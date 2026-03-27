@@ -842,3 +842,57 @@ Raw ssh -T output:
 ```
 
 Log file: C:\Users\1hans\TFXHub-Module0\.ssh_setup_verify.log
+## MVP Test and Debug Run - 2026-03-27T11:07:24Z
+
+### Summary
+- Format/Analyze (dotnet): SUCCESS
+- Unit tests (dotnet test): SUCCESS
+- Build (dotnet publish): SUCCESS
+- Docker build: FAILURE
+- Git fsck: SUCCESS
+- Git count-objects: SUCCESS
+
+### Failures
+- Docker build: ERROR: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+- Docker health check: You cannot call a method on a null-valued expression.
+
+Action: Investigate logs in docs/reports/logs and reproduce failing step locally.
+
+Logs: docs/reports/logs
+
+## MVP Test and Debug Run - 2026-03-27T11:07:54Z
+
+### Summary
+- Format/Analyze (dotnet): SUCCESS
+- Unit tests (dotnet test): SUCCESS
+- Build (dotnet publish): SUCCESS
+- Docker build: FAILURE
+- Git fsck: SUCCESS
+- Git count-objects: SUCCESS
+
+### Failures
+- Docker build: ERROR: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+- Docker health check: You cannot call a method on a null-valued expression.
+
+Action: Investigate logs in docs/reports/logs and reproduce failing step locally.
+
+Logs: docs/reports/logs
+
+## MVP Test and Debug Run - 2026-03-27T11:11:15Z
+
+### Summary
+- Format/Analyze (dotnet): SUCCESS
+- Unit tests (dotnet test): SUCCESS
+- Build (dotnet publish): SUCCESS
+- Docker build: FAILURE
+- Git fsck: SUCCESS
+- Git count-objects: SUCCESS
+
+### Failures
+- Docker build: #0 building with "desktop-linux" instance using docker driver
+- Docker health check: You cannot call a method on a null-valued expression.
+
+Action: Investigate logs in docs/reports/logs and reproduce failing step locally.
+
+Logs: docs/reports/logs
+
