@@ -24,7 +24,7 @@ if (-not $repoRoot) {
 $REPORT_DIR = Join-Path $repoRoot "docs\reports"
 $REPORT_FILE = Join-Path $REPORT_DIR "module2_remediation_report.md"
 $LOG_DIR = Join-Path $REPORT_DIR "logs"
-$HEALTH_ENDPOINT = "http://localhost:8080/health"  # adjust to your app
+$HEALTH_ENDPOINT = "http://localhost:8080/api/health"  # adjust to your app
 # -------------------------
 
 # Ensure report directories
