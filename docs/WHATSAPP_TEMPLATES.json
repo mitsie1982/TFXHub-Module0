@@ -1,32 +1,32 @@
 ﻿{
-  ""contractors"": {
-    ""template_name"": ""tfx_compliance_reminder"",
-    ""language"": ""en_US"",
-    ""body"": ""TFX Hub: Compliance Reminder\nHello {name}, please upload required compliance docs for contract {contract_id} within 7 days. Upload: {upload_link}\nQuestions? Reply or contact compliance@tfxhub.example""
+  "contractors": {
+    "template_name": "tfx_compliance_reminder",
+    "language": "en_US",
+    "body": "TFX Hub: Compliance Reminder\nHello {name}, please upload required compliance docs for contract {contract_id} within 7 days. Upload: {upload_link}\nQuestions? Reply or contact compliance@tfxhub.example"
   },
-  ""customers"": {
-    ""template_name"": ""tfx_service_update"",
-    ""language"": ""en_US"",
-    ""body"": ""TFX Hub: Service Update\nHi {name}, maintenance is complete and your account is validated. View: {account_link} Need help? Reply or contact support.""
+  "customers": {
+    "template_name": "tfx_service_update",
+    "language": "en_US",
+    "body": "TFX Hub: Service Update\nHi {name}, maintenance is complete and your account is validated. View: {account_link} Need help? Reply or contact support."
   },
-  ""admins"": {
-    ""template_name"": ""tfx_admin_alert"",
-    ""language"": ""en_US"",
-    ""body"": ""TFX Hub Admin Alert\nAdmin {name}, packed-refs rewritten and GC completed. Run verification: {admin_console_link} or run ./scripts/verify.ps1""
+  "admins": {
+    "template_name": "tfx_admin_alert",
+    "language": "en_US",
+    "body": "TFX Hub Admin Alert\nAdmin {name}, packed-refs rewritten and GC completed. Run verification: {admin_console_link} or run ./scripts/verify.ps1"
   },
-  ""developers"": {
-    ""template_name"": ""tfx_dev_notice"",
-    ""language"": ""en_US"",
-    ""body"": ""TFX Hub Dev Notice\nDev {name}, root cause fixed. Pull latest and run verification: git fetch && git checkout master && ./scripts/verify.ps1. Report: {report_link}""
+  "developers": {
+    "template_name": "tfx_dev_notice",
+    "language": "en_US",
+    "body": "TFX Hub Dev Notice\nDev {name}, root cause fixed. Pull latest and run verification: git fetch && git checkout master && ./scripts/verify.ps1. Report: {report_link}"
   },
-  ""owners"": {
-    ""template_name"": ""tfx_exec_summary"",
-    ""language"": ""en_US"",
-    ""body"": ""TFX Hub Executive Summary\nOwners, incident resolved. Repo shrank from 212MB to 0.1MB. Full report: {report_link}. Approve release? Reply YES to confirm.""
+  "owners": {
+    "template_name": "tfx_exec_summary",
+    "language": "en_US",
+    "body": "TFX Hub Executive Summary\nOwners, incident resolved. Repo shrank from 212MB to 0.1MB. Full report: {report_link}. Approve release? Reply YES to confirm."
   },
-  ""demo_user"": {
-    ""template_name"": ""tfx_demo_user"",
-    ""language"": ""en_US"",
-    ""body"": ""TFX Hub Demo: Hi {name}, try our interactive demo at {demo_link}. Share feedback to help us improve.""
+  "demo_user": {
+    "template_name": "tfx_demo_user",
+    "language": "en_US",
+    "body": "TFX Hub Demo: Hi {name}, try our interactive demo at {demo_link}. Share feedback to help us improve."
   }
 }
