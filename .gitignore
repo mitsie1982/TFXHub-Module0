@@ -35,3 +35,6 @@ dotnet-sdk.exe
 bin/
 obj/
 
+Users1hans*
+push_out.txt
+.git_push_results.txt
