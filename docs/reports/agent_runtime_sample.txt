@@ -1,0 +1,4 @@
+service.name: TFXHub.Agent
+[07:04:54 INF] Host health: OK - {"status":"Healthy","checks":[]}
+service.name: TFXHub.Agent
+[07:04:54 INF] Host users: OK - [{"id":2,"name":"Agent User","role":"Agent"},{"id":3,"name":"Client User","role":"Client"},{"id":4,"name":"Test User","role":"Test"},{"id":5,"name":"New User","role":"Client"}]

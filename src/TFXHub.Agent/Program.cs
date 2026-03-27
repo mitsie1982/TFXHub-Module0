@@ -1,6 +1,7 @@
-using Serilog;
 using OpenTelemetry;
+using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Serilog;
 using TFXHub.Agent;
 
 IHost host = Host.CreateDefaultBuilder(args)
@@ -15,6 +16,7 @@ IHost host = Host.CreateDefaultBuilder(args)
         services.AddOpenTelemetry()
             .WithTracing(tracerProviderBuilder =>
                 tracerProviderBuilder
+                    .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("TFXHub.Agent"))
                     .AddHttpClientInstrumentation()
                     .AddSource("TFXHub.Agent")
                     .AddConsoleExporter());

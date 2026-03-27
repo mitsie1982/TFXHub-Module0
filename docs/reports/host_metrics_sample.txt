@@ -1,0 +1,12 @@
+ROOT:TFX Hub API Host is operational.
+HEALTH:Healthy
+# HELP http_request_duration_seconds The duration of HTTP requests processed by an ASP.NET Core application.
+# TYPE http_request_duration_seconds histogram
+http_request_duration_seconds_sum{code="200",method="GET",controller="",action="",endpoint="/"} 0.0386177
+http_request_duration_seconds_count{code="200",method="GET",controller="",action="",endpoint="/"} 1
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/",le="0.001"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/",le="0.002"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/",le="0.004"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/",le="0.008"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/",le="0.016"} 0
+http_request_duration_seconds_bucket{code="200",method="GET",controller="",action="",endpoint="/",le="0.032"} 0

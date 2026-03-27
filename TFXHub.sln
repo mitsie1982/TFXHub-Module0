@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -7,6 +7,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFXHub.Agent", "src\TFXHub.Agent\TFXHub.Agent.csproj", "{12345678-1234-1234-1234-123456789013}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFXHub.Client", "src\TFXHub.Client\TFXHub.Client.csproj", "{12345678-1234-1234-1234-123456789014}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6FE58299-9201-40F6-B9E6-31475A7E8B6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFXHub.Tests", "tests\TFXHub.Tests\TFXHub.Tests.csproj", "{3974B8A6-A1F8-4D36-BCC2-83AD05CE2C7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,8 +30,15 @@ Global
 		{12345678-1234-1234-1234-123456789014}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12345678-1234-1234-1234-123456789014}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12345678-1234-1234-1234-123456789014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3974B8A6-A1F8-4D36-BCC2-83AD05CE2C7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3974B8A6-A1F8-4D36-BCC2-83AD05CE2C7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3974B8A6-A1F8-4D36-BCC2-83AD05CE2C7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3974B8A6-A1F8-4D36-BCC2-83AD05CE2C7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3974B8A6-A1F8-4D36-BCC2-83AD05CE2C7F} = {6FE58299-9201-40F6-B9E6-31475A7E8B6D}
 	EndGlobalSection
 EndGlobal

@@ -5,6 +5,7 @@ services:
       dockerfile: src/TFXHub.Host/Dockerfile
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:5000
+      - OTEL_SERVICE_NAME=TFXHub.Host
 
   host2:
     build:
@@ -12,6 +13,7 @@ services:
       dockerfile: src/TFXHub.Host/Dockerfile
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:5000
+      - OTEL_SERVICE_NAME=TFXHub.Host
 
   loadbalancer:
     image: nginx:stable-alpine
@@ -31,6 +33,7 @@ services:
       - host1
     environment:
       - HOST_BASE_URL=http://host1:5000
+      - OTEL_SERVICE_NAME=TFXHub.Agent
 
   agent2:
     build:
@@ -40,6 +43,7 @@ services:
       - host1
     environment:
       - HOST_BASE_URL=http://host1:5000
+      - OTEL_SERVICE_NAME=TFXHub.Agent
 
   agent3:
     build:
@@ -49,6 +53,7 @@ services:
       - host2
     environment:
       - HOST_BASE_URL=http://host2:5000
+      - OTEL_SERVICE_NAME=TFXHub.Agent
 
   agent4:
     build:
@@ -58,6 +63,7 @@ services:
       - host2
     environment:
       - HOST_BASE_URL=http://host2:5000
+      - OTEL_SERVICE_NAME=TFXHub.Agent
 
   client:
     build:
@@ -98,3 +104,4 @@ services:
     environment:
       - LOGSTASH_HOST=logstash
       - LOGSTASH_PORT=5000
+

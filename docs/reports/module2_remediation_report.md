@@ -305,3 +305,444 @@ Invoke-RestMethod http://localhost:8080/api/health -> Healthy
 
 The three failures are **functionally unblocked** for build, local runtime, and containerized runtime.  
 Primary remaining blockers are operational/documentation completeness items: remote push, persisted log artifacts, and production-hardening tasks (shared DB + migrations + tests).
+
+## Git Push Results - 2026-03-26T12:27:23Z
+```
+=== PUSH BRANCH OUTPUT ===
+g i t   :   f a t a l :   ' o r i g i n '   d o e s   n o t   a p p e a r   t o   b e   a   g i t   r e p o s i t o r y 
+ 
+ A t   l i n e : 1   c h a r : 3 6 1 
+ 
+ +   . . .   p u s h _ r e s u l t s . t x t   - E n c o d i n g   u t f 8 ;   g i t   p u s h   - u   o r i g i n   H E A D   * > & 1   |   T e e - O   . . . 
+ 
+ +                                                                             ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( f a t a l :   ' o r i g i n ' . . .   g i t   r e p o s i t o r y   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ T a g   v 0 . 2   e x i s t s   l o c a l l y ;   p u s h i n g   t o   o r i g i n 
+ 
+ g i t   :   f a t a l :   ' o r i g i n '   d o e s   n o t   a p p e a r   t o   b e   a   g i t   r e p o s i t o r y 
+ 
+ A t   l i n e : 1   c h a r : 5 9 1 
+ 
+ +   . . .   t h   . g i t _ p u s h _ r e s u l t s . t x t   - A p p e n d   } ;   g i t   p u s h   o r i g i n   v 0 . 2   * > & 1   |   T e e - O   . . . 
+ 
+ +                                                                                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( f a t a l :   ' o r i g i n ' . . .   g i t   r e p o s i t o r y   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ === REMOTE LISTING AFTER PUSH ===
+```
+
+## Git Push Results - 2026-03-27T05:09:54Z
+```
+=== PUSH RESULTS ===
+o r i g i n 	 g i t @ g i t h u b . c o m : H a n s - T F X / T F X H u b . g i t   ( f e t c h ) 
+ 
+ o r i g i n 	 g i t @ g i t h u b . c o m : H a n s - T F X / T F X H u b . g i t   ( p u s h ) 
+ 
+ g i t   :   g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ A t   l i n e : 1   c h a r : 1 8 5 
+ 
+ +   . . .   h   . g i t _ p u s h _ r e s u l t s . t x t   - A p p e n d ;   g i t   p u s h   - u   o r i g i n   H E A D   2 > & 1   |   T e e - O   . . . 
+ 
+ +                                                                             ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( g i t @ g i t h u b . c o m : . . . e d   ( p u b l i c k e y ) .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ g i t   :   g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ A t   l i n e : 1   c h a r : 3 3 7 
+ 
+ +   . . .   s / v 0 . 2 "   2 > $ n u l l ) )   {   g i t   t a g   v 0 . 2   } ;   g i t   p u s h   o r i g i n   v 0 . 2   2 > & 1   |   T e e - O   . . . 
+ 
+ +                                                                                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( g i t @ g i t h u b . c o m : . . . e d   ( p u b l i c k e y ) .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ 
+```
+
+## Git Push Results - 2026-03-27T05:15:30Z
+```
+=== PUSH RESULTS ===
+o r i g i n 	 g i t @ g i t h u b . c o m : H a n s - T F X / T F X H u b . g i t   ( f e t c h ) 
+ 
+ o r i g i n 	 g i t @ g i t h u b . c o m : H a n s - T F X / T F X H u b . g i t   ( p u s h ) 
+ 
+ g i t   :   g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ A t   l i n e : 1   c h a r : 1 8 5 
+ 
+ +   . . .   h   . g i t _ p u s h _ r e s u l t s . t x t   - A p p e n d ;   g i t   p u s h   - u   o r i g i n   H E A D   2 > & 1   |   T e e - O   . . . 
+ 
+ +                                                                             ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( g i t @ g i t h u b . c o m : . . . e d   ( p u b l i c k e y ) .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ g i t   :   g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ A t   l i n e : 1   c h a r : 3 3 7 
+ 
+ +   . . .   s / v 0 . 2 "   2 > $ n u l l ) )   {   g i t   t a g   v 0 . 2   } ;   g i t   p u s h   o r i g i n   v 0 . 2   2 > & 1   |   T e e - O   . . . 
+ 
+ +                                                                                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( g i t @ g i t h u b . c o m : . . . e d   ( p u b l i c k e y ) .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ 
+```
+
+## Git Push Results - 2026-03-27T05:25:15Z
+```
+=== PUSH RESULTS ===
+R e m o t e   l i s t i n g : 
+ 
+ o r i g i n 	 g i t @ g i t h u b . c o m : H a n s - T F X / T F X H u b . g i t   ( f e t c h ) 
+ 
+ o r i g i n 	 g i t @ g i t h u b . c o m : H a n s - T F X / T F X H u b . g i t   ( p u s h ) 
+ 
+ P u s h i n g   c u r r e n t   b r a n c h   t o   o r i g i n . . . 
+ 
+ g i t   :   g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ A t   l i n e : 1   c h a r : 1 
+ 
+ +   g i t   p u s h   - u   o r i g i n   H E A D   2 > & 1   |   T e e - O b j e c t   - F i l e P a t h   . g i t _ p u s h _ r e s u l t s   . . . 
+ 
+ +   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( g i t @ g i t h u b . c o m : . . . e d   ( p u b l i c k e y ) .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ P u s h i n g   t a g   v 0 . 2   t o   o r i g i n . . . 
+ 
+ g i t   :   g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ A t   l i n e : 1   c h a r : 1 
+ 
+ +   g i t   p u s h   o r i g i n   v 0 . 2   2 > & 1   |   T e e - O b j e c t   - F i l e P a t h   . g i t _ p u s h _ r e s u l t s . t x   . . . 
+ 
+ +   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( g i t @ g i t h u b . c o m : . . . e d   ( p u b l i c k e y ) .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ 
+```
+
+## Git Push Results (Direct Key) - 2026-03-27T05:33:30Z
+```
+=== DIRECT KEY PUSH RESULTS ===
+s s h   :   g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ A t   l i n e : 1   c h a r : 1 6 7 
+ 
+ +   . . .   o d i n g   u t f 8 ;   s s h   - i   $ k e y   - o   I d e n t i t i e s O n l y = y e s   - T   g i t @ g i t h u b . c o m   2 > & 1     . . . 
+ 
+ +                                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( g i t @ g i t h u b . c o m : . . . e d   ( p u b l i c k e y ) .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ g i t   :   W a r n i n g :   I d e n t i t y   f i l e   C : U s e r s 1 h a n s . s s h i d _ e d 2 5 5 1 9   n o t   a c c e s s i b l e :   N o   
+ 
+ s u c h   f i l e   o r   d i r e c t o r y . 
+ 
+ A t   l i n e : 1   c h a r : 3 6 2 
+ 
+ +   . . .   _ e d 2 5 5 1 9   - o   I d e n t i t i e s O n l y = y e s ' ;   g i t   p u s h   - u   o r i g i n   H E A D   2 > & 1   |   T e e - O   . . . 
+ 
+ +                                                                             ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( W a r n i n g :   I d e n t i . . . e   o r   d i r e c t o r y .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ g i t   :   W a r n i n g :   I d e n t i t y   f i l e   C : U s e r s 1 h a n s . s s h i d _ e d 2 5 5 1 9   n o t   a c c e s s i b l e :   N o   
+ 
+ s u c h   f i l e   o r   d i r e c t o r y . 
+ 
+ A t   l i n e : 1   c h a r : 4 4 5 
+ 
+ +   . . .   P a t h   . g i t _ p u s h _ r e s u l t s . t x t   - A p p e n d ;   g i t   p u s h   o r i g i n   v 0 . 2   2 > & 1   |   T e e - O   . . . 
+ 
+ +                                                                                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( W a r n i n g :   I d e n t i . . . e   o r   d i r e c t o r y .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ 
+```
+
+## Git Push Results (Direct Key Retry) - 2026-03-27T05:33:54Z
+```
+=== DIRECT KEY PUSH RESULTS ===
+s s h   :   g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ A t   l i n e : 1   c h a r : 1 6 7 
+ 
+ +   . . .   o d i n g   u t f 8 ;   s s h   - i   $ k e y   - o   I d e n t i t i e s O n l y = y e s   - T   g i t @ g i t h u b . c o m   2 > & 1     . . . 
+ 
+ +                                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( g i t @ g i t h u b . c o m : . . . e d   ( p u b l i c k e y ) .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ g i t   :   W a r n i n g :   I d e n t i t y   f i l e   C : U s e r s 1 h a n s . s s h i d _ e d 2 5 5 1 9   n o t   a c c e s s i b l e :   N o   
+ 
+ s u c h   f i l e   o r   d i r e c t o r y . 
+ 
+ A t   l i n e : 1   c h a r : 3 6 2 
+ 
+ +   . . .   _ e d 2 5 5 1 9   - o   I d e n t i t i e s O n l y = y e s ' ;   g i t   p u s h   - u   o r i g i n   H E A D   2 > & 1   |   T e e - O   . . . 
+ 
+ +                                                                             ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( W a r n i n g :   I d e n t i . . . e   o r   d i r e c t o r y .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ g i t   :   W a r n i n g :   I d e n t i t y   f i l e   C : U s e r s 1 h a n s . s s h i d _ e d 2 5 5 1 9   n o t   a c c e s s i b l e :   N o   
+ 
+ s u c h   f i l e   o r   d i r e c t o r y . 
+ 
+ A t   l i n e : 1   c h a r : 4 4 5 
+ 
+ +   . . .   P a t h   . g i t _ p u s h _ r e s u l t s . t x t   - A p p e n d ;   g i t   p u s h   o r i g i n   v 0 . 2   2 > & 1   |   T e e - O   . . . 
+ 
+ +                                                                                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( W a r n i n g :   I d e n t i . . . e   o r   d i r e c t o r y .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ === DIRECT KEY RETRY ===
+g i t   :   g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ A t   l i n e : 1   c h a r : 2 1 5 
+ 
+ +   . . .   u l t s . t x t   - E n c o d i n g   u t f 8   - A p p e n d ;   g i t   p u s h   - u   o r i g i n   H E A D   2 > & 1   |   T e e - O   . . . 
+ 
+ +                                                                             ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( g i t @ g i t h u b . c o m : . . . e d   ( p u b l i c k e y ) .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ g i t   :   g i t @ g i t h u b . c o m :   P e r m i s s i o n   d e n i e d   ( p u b l i c k e y ) . 
+ 
+ A t   l i n e : 1   c h a r : 2 9 8 
+ 
+ +   . . .   P a t h   . g i t _ p u s h _ r e s u l t s . t x t   - A p p e n d ;   g i t   p u s h   o r i g i n   v 0 . 2   2 > & 1   |   T e e - O   . . . 
+ 
+ +                                                                                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+ 
+         +   C a t e g o r y I n f o                     :   N o t S p e c i f i e d :   ( g i t @ g i t h u b . c o m : . . . e d   ( p u b l i c k e y ) .   
+ 
+       : S t r i n g )   [ ] ,   R e m o t e E x c e p t i o n 
+ 
+         +   F u l l y Q u a l i f i e d E r r o r I d   :   N a t i v e C o m m a n d E r r o r 
+ 
+   
+ 
+ f a t a l :   C o u l d   n o t   r e a d   f r o m   r e m o t e   r e p o s i t o r y . 
+ 
+ 
+ 
+ P l e a s e   m a k e   s u r e   y o u   h a v e   t h e   c o r r e c t   a c c e s s   r i g h t s 
+ 
+ a n d   t h e   r e p o s i t o r y   e x i s t s . 
+ 
+ 
+```

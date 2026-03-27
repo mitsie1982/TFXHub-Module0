@@ -565,3 +565,31 @@ dotnet list src/TFXHub.Client/TFXHub.Client.csproj package --outdated --highest-
 | EF Core uses `EnsureCreated()` | No migration files. Adequate for SQLite dev; switch to `Migrate()` + migrations for production. |
 | Agent OTEL service name | Shows `unknown_service:dotnet` — set `OTEL_SERVICE_NAME` env var in docker-compose. |
 | Client requires TTY | `docker exec -it` required; exits immediately in non-interactive mode. |
+---
+
+## MVP Completion Update (March 27, 2026)
+
+The local MVP state for Module 2 is now:
+- solution builds cleanly with `dotnet build`
+- Host metrics are exposed at `/metrics`
+- Agent telemetry uses explicit service name `TFXHub.Agent`
+- baseline Host integration tests exist under `tests/TFXHub.Tests`
+- initial EF migration artifacts exist under `src/TFXHub.Host/Migrations`
+
+### Important runtime note
+For MVP stability, Host startup currently still uses `EnsureCreated()` even though migration artifacts have been scaffolded. This keeps local/test startup reliable while a later pass removes the duplicate DbContext definitions and fully activates `db.Database.Migrate()`.
+
+### Repro commands
+```powershell
+cd C:\Users\1hans\TFXHub-Module0
+dotnet restore
+dotnet build
+dotnet test
+$env:ASPNETCORE_URLS='http://0.0.0.0:5100'
+dotnet run --project src\TFXHub.Host\TFXHub.Host.csproj --no-build
+```
+
+### Evidence
+- `docs/reports/module2_mvp_completion_report.md`
+- `docs/reports/host_metrics_sample.txt`
+- `docs/reports/agent_runtime_sample.txt`
